@@ -6,9 +6,8 @@ class StepS2 extends Component {
 
     return(
       <div>
-        <img className='center' src={process.env.PUBLIC_URL + "/img/BassMentRatsWaldo.jpg"} width="800"></img>
-        <div className='bg'></div>
-      </div>    
+        <img className='center' src={process.env.PUBLIC_URL + "/img/MORSE FINAL.jpg"}></img>
+      </div>
     )
 }}
 

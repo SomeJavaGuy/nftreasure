@@ -37,7 +37,7 @@ class App extends Component {
                   <Route path="/i am bored of morse code riddles" component={StepS3} />
 
                   <Route path="/goathunt" component={StepP1} />
-                  <Route path="/yummy3" component={StepP2} />
+                  <Route path="/39" component={StepP2} />
                   <Route path="/1997134" component={StepP3} />
 
                   <Route path="/wally" component={StepB1} />

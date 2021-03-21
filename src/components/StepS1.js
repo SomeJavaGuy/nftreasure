@@ -78,7 +78,7 @@ class StepS1 extends Component {
         </ul>
         <div id="popup1" className="overlay">
           <div className="popup">
-            <a href="/steps3" class="button">It's ok, you can go now.</a>
+            <a href="/beep5" class="button">It's ok, you can go now.</a>
           </div>
         </div>
       </div>

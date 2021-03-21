@@ -11,14 +11,11 @@ class StepB1 extends Component {
 
    render(){
       return (
-             <div>
-             <title>Where is Wally?</title>
-             Where is this graffiti?
-             <form>
-             <input type='text' id='solution' name='Where is this graffiti?' />
-             </form>
-             </div>
-      )
+         <div>
+         <img className='center' src={process.env.PUBLIC_URL + "/img/MapPage.jpg"}></img>
+       </div>
+     )
+      
    }
 }
 

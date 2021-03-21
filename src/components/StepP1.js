@@ -10,10 +10,9 @@ class StepP1 extends Component {
 
    render() {
       return (
-             <div>
-             <title>Where is Wally?</title>
-                 How many faces?
-             </div>
+        <div>
+        <img className='center' src={process.env.PUBLIC_URL + "/img/PemyFaces.jpg"}></img>
+      </div>
       )}
 }
 
