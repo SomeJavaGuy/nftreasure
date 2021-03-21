@@ -32,17 +32,17 @@ class App extends Component {
                 {/* <MainNavbar /> */}
 
                 <Switch>
-                  <Route path="/steps1" component={StepS1} />
-                  <Route path="/steps2" component={StepS2} />
-                  <Route path="/steps3" component={StepS3} />
+                  <Route path="/50t3r" component={StepS1} />
+                  <Route path="/beep5" component={StepS2} />
+                  <Route path="/i am bored of morse code riddles" component={StepS3} />
 
-                  <Route path="/stepp1" component={StepP1} />
-                  <Route path="/stepp2" component={StepP2} />
-                  <Route path="/stepp3" component={StepP3} />
+                  <Route path="/goathunt" component={StepP1} />
+                  <Route path="/yummy3" component={StepP2} />
+                  <Route path="/1997134" component={StepP3} />
 
-                  <Route path="/stepb1" component={StepB1} />
-                  <Route path="/stepb2" component={StepB2} />
-                  <Route path="/stepb3" component={StepB3} />
+                  <Route path="/wally" component={StepB1} />
+                  <Route path="/anchor" component={StepB2} />
+                  <Route path="/BRATSXONEBRANDECAYXBARBADEE" component={StepB3} />
 
                   <Route path="/about" component={About} />
                   <Route path="/" component={Home} />
