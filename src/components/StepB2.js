@@ -1,14 +1,14 @@
 
 import React,{Component} from 'react';
 //var perf =require('./memorymatch/index.html');
-import './memorymatch/css/app.css';
+import './memorymatch/css/mm.css';
 //require('./memorymatch/js/app.js');
 
 class StepB2 extends Component {
 
   componentDidMount () {
     const script = document.createElement("script");
-    script.src = "C:/Projects/Hackintosh/nftreasure/src/components/memorymatch/js/app.js";
+    script.src = process.env.PUBLIC_URL + "/js/app.js";
     script.async = true;
     document.body.appendChild(script);
 }
