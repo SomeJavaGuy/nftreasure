@@ -1292,26 +1292,25 @@ contract NFTreasure is ERC1155, Ownable {
         // The correct password for SECRET3 == "QmeghiBbUuxDuCVQVCfrrCPDW2hapNGf4ZiJo4BEwoZPED"
         bytes32 correct_secret3_password = 0x06c68c7768741746ca592ffffc2b1a4928597243dfd275f7f67c7b77ed54930d;
 
-        require(balanceOf(msg.sender, BR) > 0);
-        require(balanceOf(msg.sender, PEMY) > 0);
-        require(balanceOf(msg.sender, SOTEUR) > 0);
-
         bytes32 sha3_secret = sha256(_secret);
 
         // Check that this secret hasn't been submitted before
         require(!blacklist[sha3_secret]);
 
          if (sha3_secret == correct_secret1_password) {
+             require(balanceOf(msg.sender, BR) > 0);
              // Success! Transfer SECRET1 to its new owner!
              moveSecret(owner(), msg.sender, sha3_secret);
              // Uncloak SECRET1: update its secret url
              secret1_url = string(abi.encodePacked("https://ipfs.io/ipfs/", _secret, "/{id}.json"));
              secret1_found = true;
         } else if (sha3_secret == correct_secret2_password) {
+             require(balanceOf(msg.sender, PEMY) > 0);
              moveSecret(owner(), msg.sender, sha3_secret);
              secret2_url = string(abi.encodePacked("https://ipfs.io/ipfs/", _secret, "/{id}.json"));
              secret2_found = true;
         } else if (sha3_secret == correct_secret3_password) {
+             require(balanceOf(msg.sender, SOTEUR) > 0);
              moveSecret(owner(), msg.sender, sha3_secret);
              secret3_url = string(abi.encodePacked("https://ipfs.io/ipfs/", _secret, "/{id}.json"));
              secret3_found = true;
