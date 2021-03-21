@@ -1,6 +1,5 @@
 import React,{Component} from 'react';
 //var perf =require('./memorymatch/index.html');
-import './memorymatch/css/mm.css';
 //require('./memorymatch/js/app.js');
 
 class StepS2 extends Component {
@@ -24,7 +23,7 @@ class StepS2 extends Component {
       <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" />
       <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda" />
       <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Permanent+Marker" />
-      <link rel="stylesheet" href="memorymatch/css/app.css" />
+      <link rel="stylesheet" href={process.env.PUBLIC_URL + "/css/mm.css"} />
       <div className="container">
         <header>
           <h1>Memory Game</h1>
