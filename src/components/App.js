@@ -41,8 +41,26 @@ class App extends Component {
     }
   }
 
-  mint = (color) => {
-      this.state.contract.methods.submitSecret(Web3.utils.fromAscii("cake")).send({ from: this.state.account })
+  submit_secret = (color) => {
+      this.state.contract.methods.submitSecret(Web3.utils.fromAscii("QmYr7p8TvRPGoCjBipTXSs7DP1FR5oPNjmohuUt3UW3pZZ")).send({ from: this.state.account })
+          .once('receipt', (receipt) => {
+              this.setState({
+                  colors: [...this.state.colors, color]
+              })
+          })
+  }
+
+  submit_secret2 = (color) => {
+      this.state.contract.methods.submitSecret(Web3.utils.fromAscii("QmNTntpSxKqpYqgqRy5xgqrzb1UsHfBoabbK7gMuLadvRQ")).send({ from: this.state.account })
+          .once('receipt', (receipt) => {
+              this.setState({
+                  colors: [...this.state.colors, color]
+              })
+          })
+  }
+
+  submit_secret3 = (color) => {
+      this.state.contract.methods.submitSecret(Web3.utils.fromAscii("QmeghiBbUuxDuCVQVCfrrCPDW2hapNGf4ZiJo4BEwoZPED")).send({ from: this.state.account })
           .once('receipt', (receipt) => {
               this.setState({
                   colors: [...this.state.colors, color]
@@ -86,7 +104,7 @@ class App extends Component {
                 <form onSubmit={(event) => {
                   event.preventDefault()
                   const color = this.color.value
-                  this.mint(color)
+                  this.submit_secret(color)
                 }}>
                   <input
                     type='text'
