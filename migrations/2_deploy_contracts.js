@@ -1,5 +1,5 @@
-var Million = artifacts.require("./Million.sol");
+var NFTreasure = artifacts.require("./NFTreasure.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(Million);
+  deployer.deploy(NFTreasure);
 };
