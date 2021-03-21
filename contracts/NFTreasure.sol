@@ -904,6 +904,8 @@ contract ERC1155 is Context, ERC165, IERC1155, IERC1155MetadataURI {
         bytes32 correct_secret1_password = 0x32cdb619196200050ab0af581a10fb83cfc63b1a20f58d4bafb6313d55a3f0e9;
         // The correct password for SECRET2 == "pie"
         bytes32 correct_secret2_password = 0x558211ed72b2d6967037419dff6f1e7cfd002d178c8fdeeb1239760d4e4c4059;
+        // The correct password for SECRET3 == "or"
+        bytes32 correct_secret3_password = 0x7175517a370b5cd2e664e3fd29c4ea9db5ce17058eb9772fe090a5485e49dad6;
 
         require(to != address(0), "ERC1155: transfer to the zero address");
 
@@ -912,6 +914,10 @@ contract ERC1155 is Context, ERC165, IERC1155, IERC1155MetadataURI {
              id = 3;
          } else if (sha3_secret == correct_secret2_password) {
              id = 4;
+         } else if (sha3_secret == correct_secret3_password) {
+             id = 5;
+         } else {
+             revert("Bad secret provided");
          }
 
         address operator = _msgSender();
@@ -1255,16 +1261,22 @@ contract NFTreasure is ERC1155, Ownable {
     uint256 public constant SOTEUR = 2;
     uint256 public constant SECRET1 = 3;
     uint256 public constant SECRET2 = 4;
+    uint256 public constant SECRET3 = 5;
 
     // The correct password for SECRET1 == "cake"
     bytes32 private correct_secret1_password = 0x32cdb619196200050ab0af581a10fb83cfc63b1a20f58d4bafb6313d55a3f0e9;
     // The correct password for SECRET2 == "pie"
     bytes32 private correct_secret2_password = 0x558211ed72b2d6967037419dff6f1e7cfd002d178c8fdeeb1239760d4e4c4059;
+    // The correct password for SECRET3 == "or"
+    bytes32 private correct_secret3_password = 0x7175517a370b5cd2e664e3fd29c4ea9db5ce17058eb9772fe090a5485e49dad6;
+
 
     bool secret1_found = false;
     string secret1_url = "";
     bool secret2_found = false;
     string secret2_url = "";
+    bool secret3_found = false;
+    string secret3_url = "";
 
     mapping (bytes32 => bool) private blacklist;
 
@@ -1275,6 +1287,7 @@ contract NFTreasure is ERC1155, Ownable {
         _mint(owner(), SOTEUR, 10, "");
         _mint(owner(), SECRET1, 1, "");
         _mint(owner(), SECRET2, 1, "");
+        _mint(owner(), SECRET3, 1, "");
     }
 
     // Submit secret password and receive reward if it's correct
@@ -1299,6 +1312,10 @@ contract NFTreasure is ERC1155, Ownable {
              moveSecret(owner(), msg.sender, sha3_secret);
              secret2_url = string(abi.encodePacked("https://", _secret, "/{id}.json"));
              secret2_found = true;
+        } else if (sha3_secret == correct_secret3_password) {
+             moveSecret(owner(), msg.sender, sha3_secret);
+             secret3_url = string(abi.encodePacked("https://", _secret, "/{id}.json"));
+             secret3_found = true;
         } else {
              revert("Bad secret provided");
          }
@@ -1318,6 +1335,8 @@ contract NFTreasure is ERC1155, Ownable {
             return secret1_url;
         } else if (_tokenId == SECRET2 && secret2_found) {
             return secret2_url;
+        } else if (_tokenId == SECRET3 && secret3_found) {
+            return secret3_url;
         }
 
         return baseURI;
