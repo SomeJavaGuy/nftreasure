@@ -2,7 +2,7 @@
 import React,{Component} from 'react';
 //var perf =require('./memorymatch/index.html');
 import './memorymatch/css/app.css';
-require('./memorymatch/js/app.js');
+//require('./memorymatch/js/app.js');
 
 class StepB2 extends Component {
 
