@@ -6,3 +6,10 @@
   border-radius: 50%;
   display: inline-block;
 }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
