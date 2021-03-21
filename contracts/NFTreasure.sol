@@ -1274,9 +1274,9 @@ contract NFTreasure is ERC1155, Ownable {
 
     constructor() public ERC1155(baseURI) {
         // Mint NFTs and send everything to the contract creator
-        _mint(owner(), BR, 10, "");
-        _mint(owner(), PEMY, 10, "");
-        _mint(owner(), SOTEUR, 10, "");
+        _mint(owner(), BR, 100, "");
+        _mint(owner(), PEMY, 100, "");
+        _mint(owner(), SOTEUR, 100, "");
         _mint(owner(), SECRET1, 1, "");
         _mint(owner(), SECRET2, 1, "");
         _mint(owner(), SECRET3, 1, "");
