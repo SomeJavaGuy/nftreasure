@@ -1,0 +1,6 @@
+src/abis/
+node_modules/
+package-lock.json
+.infura
+.secret
+build/
