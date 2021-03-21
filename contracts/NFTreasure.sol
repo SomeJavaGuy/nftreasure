@@ -900,12 +900,12 @@ contract ERC1155 is Context, ERC165, IERC1155, IERC1155MetadataURI {
         public
         virtual
     {
-        // The correct password for SECRET1 == "cake"
-        bytes32 correct_secret1_password = 0x32cdb619196200050ab0af581a10fb83cfc63b1a20f58d4bafb6313d55a3f0e9;
-        // The correct password for SECRET2 == "pie"
-        bytes32 correct_secret2_password = 0x558211ed72b2d6967037419dff6f1e7cfd002d178c8fdeeb1239760d4e4c4059;
-        // The correct password for SECRET3 == "or"
-        bytes32 correct_secret3_password = 0x7175517a370b5cd2e664e3fd29c4ea9db5ce17058eb9772fe090a5485e49dad6;
+        // The correct password for SECRET1 == "QmYr7p8TvRPGoCjBipTXSs7DP1FR5oPNjmohuUt3UW3pZZ"
+        bytes32 correct_secret1_password = 0xb09c0530ca6b06a897c7ef4d7be42be88d9712767c872f36a821d8936b0958c4;
+        // The correct password for SECRET2 == "QmNTntpSxKqpYqgqRy5xgqrzb1UsHfBoabbK7gMuLadvRQ"
+        bytes32 correct_secret2_password = 0xc4288d7241e3321cba024a999e420e80733abdb72dd3c1a30a699b373a26f955;
+        // The correct password for SECRET3 == "QmeghiBbUuxDuCVQVCfrrCPDW2hapNGf4ZiJo4BEwoZPED"
+        bytes32 correct_secret3_password = 0x06c68c7768741746ca592ffffc2b1a4928597243dfd275f7f67c7b77ed54930d;
 
         require(to != address(0), "ERC1155: transfer to the zero address");
 
@@ -1254,7 +1254,7 @@ library Strings {
 pragma solidity ^0.7.0;
 
 contract NFTreasure is ERC1155, Ownable {
-    string baseURI = "https://raw.githubusercontent.com/asn-d6/nftreasure/master/api/token/{id}.json";
+    string baseURI = "https://ipfs.io/ipfs/QmaffvG9gj4VAAR6exoqNjUkE98RWLtmn9Saf1ehErwoGo/{id}.json";
 
     uint256 public constant BR = 0;
     uint256 public constant PEMY = 1;
@@ -1262,14 +1262,6 @@ contract NFTreasure is ERC1155, Ownable {
     uint256 public constant SECRET1 = 3;
     uint256 public constant SECRET2 = 4;
     uint256 public constant SECRET3 = 5;
-
-    // The correct password for SECRET1 == "cake"
-    bytes32 private correct_secret1_password = 0x32cdb619196200050ab0af581a10fb83cfc63b1a20f58d4bafb6313d55a3f0e9;
-    // The correct password for SECRET2 == "pie"
-    bytes32 private correct_secret2_password = 0x558211ed72b2d6967037419dff6f1e7cfd002d178c8fdeeb1239760d4e4c4059;
-    // The correct password for SECRET3 == "or"
-    bytes32 private correct_secret3_password = 0x7175517a370b5cd2e664e3fd29c4ea9db5ce17058eb9772fe090a5485e49dad6;
-
 
     bool secret1_found = false;
     string secret1_url = "";
@@ -1293,6 +1285,13 @@ contract NFTreasure is ERC1155, Ownable {
     // Submit secret password and receive reward if it's correct
     // Throws if the password is not right
     function submitSecret(bytes memory _secret) public {
+        // The correct password for SECRET1 == "QmYr7p8TvRPGoCjBipTXSs7DP1FR5oPNjmohuUt3UW3pZZ"
+        bytes32 correct_secret1_password = 0xb09c0530ca6b06a897c7ef4d7be42be88d9712767c872f36a821d8936b0958c4;
+        // The correct password for SECRET2 == "QmNTntpSxKqpYqgqRy5xgqrzb1UsHfBoabbK7gMuLadvRQ"
+        bytes32 correct_secret2_password = 0xc4288d7241e3321cba024a999e420e80733abdb72dd3c1a30a699b373a26f955;
+        // The correct password for SECRET3 == "QmeghiBbUuxDuCVQVCfrrCPDW2hapNGf4ZiJo4BEwoZPED"
+        bytes32 correct_secret3_password = 0x06c68c7768741746ca592ffffc2b1a4928597243dfd275f7f67c7b77ed54930d;
+
         require(balanceOf(msg.sender, BR) > 0);
         require(balanceOf(msg.sender, PEMY) > 0);
         require(balanceOf(msg.sender, SOTEUR) > 0);
@@ -1306,15 +1305,15 @@ contract NFTreasure is ERC1155, Ownable {
              // Success! Transfer SECRET1 to its new owner!
              moveSecret(owner(), msg.sender, sha3_secret);
              // Uncloak SECRET1: update its secret url
-             secret1_url = string(abi.encodePacked("https://", _secret, "/{id}.json"));
+             secret1_url = string(abi.encodePacked("https://ipfs.io/ipfs/", _secret, "/{id}.json"));
              secret1_found = true;
         } else if (sha3_secret == correct_secret2_password) {
              moveSecret(owner(), msg.sender, sha3_secret);
-             secret2_url = string(abi.encodePacked("https://", _secret, "/{id}.json"));
+             secret2_url = string(abi.encodePacked("https://ipfs.io/ipfs/", _secret, "/{id}.json"));
              secret2_found = true;
         } else if (sha3_secret == correct_secret3_password) {
              moveSecret(owner(), msg.sender, sha3_secret);
-             secret3_url = string(abi.encodePacked("https://", _secret, "/{id}.json"));
+             secret3_url = string(abi.encodePacked("https://ipfs.io/ipfs/", _secret, "/{id}.json"));
              secret3_found = true;
         } else {
              revert("Bad secret provided");
@@ -1329,7 +1328,7 @@ contract NFTreasure is ERC1155, Ownable {
      * return the secret URL.
      */
     function uri(uint256 _tokenId) public view override virtual returns (string memory) {
-        require(_tokenId <= SECRET2, "ERC721Metadata: URI query for nonexistent token");
+        require(_tokenId <= SECRET3, "ERC721Metadata: URI query for nonexistent token");
 
         if (_tokenId == SECRET1 && secret1_found) {
             return secret1_url;

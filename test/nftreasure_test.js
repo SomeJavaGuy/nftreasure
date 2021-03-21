@@ -38,18 +38,18 @@ contract('NFTreasure', (accounts) => {
         it('url works', async() => {
             // Fetch URL for bassmentrats
             url = await contract.uri(0)
-            assert.equal(url, "https://test/{id}.json");
+            assert.equal(url, "https://ipfs.io/ipfs/QmaffvG9gj4VAAR6exoqNjUkE98RWLtmn9Saf1ehErwoGo/{id}.json");
 
             // Fetch URL for soteur
             url = await contract.uri(2)
-            assert.equal(url, "https://test/{id}.json");
+            assert.equal(url, "https://ipfs.io/ipfs/QmaffvG9gj4VAAR6exoqNjUkE98RWLtmn9Saf1ehErwoGo/{id}.json");
 
             // Fetch URL for secret2
             url = await contract.uri(4)
-            assert.equal(url, "https://test/{id}.json");
+            assert.equal(url, "https://ipfs.io/ipfs/QmaffvG9gj4VAAR6exoqNjUkE98RWLtmn9Saf1ehErwoGo/{id}.json");
 
             // Fetch URL for non-existent NFT. Check for rejection
-            url = await contract.uri(5).should.be.rejected;
+            url = await contract.uri(6).should.be.rejected;
         })
     })
 
@@ -89,23 +89,32 @@ contract('NFTreasure', (accounts) => {
 
             // Check that URI is still the base URI
             uri = await contract.uri(3);
-            assert.equal(uri, "https://test/{id}.json");
+            assert.equal(uri, "https://ipfs.io/ipfs/QmaffvG9gj4VAAR6exoqNjUkE98RWLtmn9Saf1ehErwoGo/{id}.json");
 
-
-            attempt = await contract.submitSecret(web3.utils.fromAscii("cake"), {from: accounts[1]})
+            attempt = await contract.submitSecret(web3.utils.fromAscii("QmYr7p8TvRPGoCjBipTXSs7DP1FR5oPNjmohuUt3UW3pZZ"), {from: accounts[1]})
             hey = await contract.balanceOf(accounts[1], 3)
             assert.equal(hey, 1);
 
-            attempt = await contract.submitSecret(web3.utils.fromAscii("pie"), {from: accounts[1]})
+            attempt = await contract.submitSecret(web3.utils.fromAscii("QmNTntpSxKqpYqgqRy5xgqrzb1UsHfBoabbK7gMuLadvRQ"), {from: accounts[1]})
             hey = await contract.balanceOf(accounts[1], 4)
+            assert.equal(hey, 1);
+
+            attempt = await contract.submitSecret(web3.utils.fromAscii("QmeghiBbUuxDuCVQVCfrrCPDW2hapNGf4ZiJo4BEwoZPED"), {from: accounts[1]})
+            hey = await contract.balanceOf(accounts[1], 5)
             assert.equal(hey, 1);
 
             // Blacklist triggered
             await contract.submitSecret(web3.utils.fromAscii("pie"), {from: accounts[1]}).should.be.rejected;
 
-            // Check that URI is still the base URI
+            // Check that secret URIs have changed
             uri = await contract.uri(3);
-            assert.equal(uri, "https://cake/{id}.json");
+            assert.equal(uri, "https://ipfs.io/ipfs/QmYr7p8TvRPGoCjBipTXSs7DP1FR5oPNjmohuUt3UW3pZZ/{id}.json");
+
+            uri = await contract.uri(4);
+            assert.equal(uri, "https://ipfs.io/ipfs/QmNTntpSxKqpYqgqRy5xgqrzb1UsHfBoabbK7gMuLadvRQ/{id}.json");
+
+            uri = await contract.uri(5);
+            assert.equal(uri, "https://ipfs.io/ipfs/QmeghiBbUuxDuCVQVCfrrCPDW2hapNGf4ZiJo4BEwoZPED/{id}.json");
         })
     })
 })
