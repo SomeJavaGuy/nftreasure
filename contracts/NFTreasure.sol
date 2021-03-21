@@ -1254,7 +1254,7 @@ library Strings {
 pragma solidity ^0.7.0;
 
 contract NFTreasure is ERC1155, Ownable {
-    string baseURI = "https://ipfs.io/ipfs/QmaffvG9gj4VAAR6exoqNjUkE98RWLtmn9Saf1ehErwoGo/{id}.json";
+    string baseURI = "https://ipfs.io/ipfs/QmbRFuCnwS5mZpUobjVNE3vAZTqN5kWwZyhNJDQkY4xkD6/{id}.json";
 
     uint256 public constant BR = 0;
     uint256 public constant PEMY = 1;
