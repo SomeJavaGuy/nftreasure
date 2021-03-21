@@ -3,7 +3,7 @@ import Web3 from 'web3'
 import './App.css';
 import NFTreasure from '../abis/NFTreasure.json'
 
-class StepB3 extends Component {
+class StepP3 extends Component {
 
   async componentWillMount() {
     await this.loadWeb3()
@@ -41,8 +41,8 @@ class StepB3 extends Component {
     }
   }
 
-  submit_secret_br = (color) => {
-      this.state.contract.methods.submitSecret(Web3.utils.fromAscii("QmYr7p8TvRPGoCjBipTXSs7DP1FR5oPNjmohuUt3UW3pZZ")).send({ from: this.state.account })
+  submit_secret_pemmy = (color) => {
+      this.state.contract.methods.submitSecret(Web3.utils.fromAscii("QmNTntpSxKqpYqgqRy5xgqrzb1UsHfBoabbK7gMuLadvRQ")).send({ from: this.state.account })
           .once('receipt', (receipt) => {
               this.setState({
                   colors: [...this.state.colors, color]
@@ -84,12 +84,12 @@ class StepB3 extends Component {
                 <form onSubmit={(event) => {
                   event.preventDefault()
                   const color = this.color.value
-                  this.submit_secret_br(color)
+                  this.submit_secret_pemmy(color)
                 }}>
                   <input
                     type='submit'
                     className='btn btn-block btn-primary'
-                    value="Get BR's prize!"
+                    value="Get Pemmy's prize!"
                   />
                 </form>
               </div>
@@ -112,4 +112,4 @@ class StepB3 extends Component {
   }
 }
 
-export default StepB3;
+export default StepP3;
